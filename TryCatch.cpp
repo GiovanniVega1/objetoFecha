@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    Date a(5, 20, 22);
+    Date a(2, 29, 2020);
     cout << a.getDay();
     ++a;
     cout << a.getDay();

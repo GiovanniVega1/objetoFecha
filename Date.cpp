@@ -1,19 +1,45 @@
 #include "Date.h"
+#include<iostream>
+#include<stdexcept> 
+
+using namespace std;
 
 Date::Date(int inmonth, int inday, int inyear) {
-	setMonth(inmonth);
-	setDay(inday);
-	setYear(inday);
+	try {
+		setMonth(inmonth);
+		setDay(inday, inmonth, inyear);
+		setYear(inday);
+		cout << "La fecha es valida" << endl;
+	}
+	catch(invalid_argument& error){
+		//cerr << error.what() << endl;
+		cout << "Fecha invalida, el programa termino" << endl;
+	}
 }
 
 void Date::setMonth(int inmonth) {
-	month = inmonth;
+	if (inmonth > 0 && inmonth < 13) {
+		month = inmonth;
+	}
+	else {
+		throw invalid_argument("Asi no va"); 
+	}
 }
-void Date::setDay(int inday) {
-	day = inday;
+void Date::setDay(int inday, int inmonth, int inyear) {
+	if (cantMaxDiaMes(inmonth, inyear) >= inday) {
+		day = inday;
+	}
+	else {
+		throw invalid_argument("Asi no va");
+	}
 }
 void Date::setYear(int inyear) {
-	year = inyear;
+	if (inyear > 0) {
+		year = inyear;
+	}
+	else {
+		throw invalid_argument("Asi no va");
+	}
 }
 
 int Date::getMonth() {
@@ -24,6 +50,27 @@ int Date::getDay() {
 }
 int Date::getYear() {
 	return year;
+}
+
+int Date::esBiciesto(int inyear) {
+	return ((inyear % 4 == 0 && inyear % 100 != 0) || inyear % 400 == 0);
+}
+
+int Date::cantMaxDiaMes(int inmonth, int inyear) {
+	if (inmonth == 1 || inmonth == 3 || inmonth == 5 || inmonth == 7 || inmonth == 8 || inmonth == 10 || inmonth == 12) {
+		return 31;
+	}
+	else if (inmonth == 4 || inmonth == 6 || inmonth == 9 || inmonth == 11) {
+		return 30;
+	}
+	else if (inmonth == 2) {
+		if (esBiciesto(inyear)) {
+			return 29;
+		}
+		else {
+			return 28;
+		}
+	}
 }
 
 Date& Date::operator++() {
