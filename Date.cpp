@@ -8,7 +8,7 @@ Date::Date(int inmonth, int inday, int inyear) {
 	try {
 		setMonth(inmonth);
 		setDay(inday, inmonth, inyear);
-		setYear(inday);
+		setYear(inyear);
 		cout << "La fecha es valida" << endl;
 	}
 	catch(invalid_argument& error){
