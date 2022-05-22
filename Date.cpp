@@ -95,10 +95,16 @@ Date& Date::operator--() {
 	if (1 < day) {
 		--day;
 	}
-	else
-	{
+	else if (day == 1 && month > 1) {
 		--month;
 		day = cantMaxDiaMes(month, year);
 	}
+	else if(month == 1 && day == 1)
+	{
+		--year;
+		day = cantMaxDiaMes(month, year);
+		month = 12;
+	}
+
 	return *this;
 }
