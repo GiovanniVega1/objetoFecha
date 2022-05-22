@@ -74,17 +74,19 @@ int Date::cantMaxDiaMes(int inmonth, int inyear) {
 }
 
 Date& Date::operator++() {
-	//cantMaxDiaMes(month, year);
 	if (cantMaxDiaMes(month, year) > day) {
 		++day;
 	}
-	else
-	{
+	else if (cantMaxDiaMes(month, year) == day && month < 12) {
 		++month;
 		day = 1;
 	}
-
-	
+	else if(day == 31 && month == 12)
+	{
+		++year;
+		day = 1;
+		month = 1;
+	}
 
 	return *this;
 }
