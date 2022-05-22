@@ -77,3 +77,8 @@ Date& Date::operator++() {
 	++day;
 	return *this;
 }
+
+Date& Date::operator--() {
+	--day;
+	return *this;
+}

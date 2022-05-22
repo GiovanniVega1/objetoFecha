@@ -20,7 +20,7 @@ void Menu::menu() {
 		cin >> op;
 		switch (op){
 		case 1: ++a; me.mostrarFecha(&a); break;
-		case 2: break;
+		case 2: --a; me.mostrarFecha(&a); break;
 		case 0: break;
 		default: cout << "No existe esa opcion" << endl; break;
 		}

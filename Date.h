@@ -2,7 +2,7 @@
 class Date
 {
 	private:
-		int day, month, year;
+		int day, month, year, elec=0;
 	public:
 		Date(int inmonth, int inday, int inyear);
 		void setMonth(int inmonth);
@@ -15,5 +15,6 @@ class Date
 		int cantMaxDiaMes(int inmonth, int inyear);
 		//Prefix
 		Date& operator ++();	
+		Date& operator --();
 };
 
